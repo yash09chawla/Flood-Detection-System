@@ -1,0 +1,30 @@
+# Backend deps for the flood-prediction web API.
+# Install with:  pip install -r backend-requirements.txt
+
+# Core web framework
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+pydantic>=2.7
+
+# ngrok tunnel for local dev → Vercel
+pyngrok>=7.2
+
+# Geospatial (some likely already installed alongside the model)
+rasterio>=1.3
+geopandas>=1.0
+shapely>=2.0
+pyogrio
+pyproj>=3.6
+
+# Earth Engine
+earthengine-api>=1.0
+geedim>=2.0
+
+# ML (already in your existing env, listed for completeness)
+torch
+timm
+albumentations
+numpy
+tqdm
+matplotlib

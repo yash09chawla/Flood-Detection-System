@@ -1,0 +1,213 @@
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   DESIGN TOKENS
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  --c-canvas:        255 255 255;
+
+  --c-glass-bg:      255 255 255;
+  --c-glass-bg-a:    0.9;
+  --c-glass-border:  226 232 240;
+  --c-glass-border-a:0.7;
+
+  --c-ink:           15 23 42;
+  --c-text:          30 41 59;
+  --c-muted:         71 85 105;
+  --c-subtle:        120 130 150;
+
+  --c-border:        226 232 240;
+  --c-line:          15 23 42;
+
+  --c-accent:           37 99 235;
+  --c-accent-grad-end: 124 58 237;
+  --c-accent-soft:     239 246 255;
+
+  --c-flood:           185 28 28;
+  --c-permanent:       29 78 216;
+
+  --c-success:         5 150 105;
+  --c-warn:            217 119 6;
+  --c-danger:          220 38 38;
+
+  --shadow-glass:
+    0 10px 30px rgb(15 23 42 / 0.08),
+    0 2px 6px rgb(15 23 42 / 0.05),
+    inset 0 1px 0 rgb(255 255 255 / 0.5);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --c-canvas:        8 12 28;
+
+  /* FIX: not pure black → readable */
+  --c-glass-bg:      20 28 48;
+  --c-glass-bg-a:    0.78;
+  --c-glass-border:  148 163 184;
+  --c-glass-border-a:0.28;
+
+  /* FIX: strong hierarchy */
+  --c-ink:           255 255 255;
+  --c-text:          230 236 245;
+  --c-muted:         170 180 200;
+  --c-subtle:        130 145 170;
+
+  /* FIX: clearer separation */
+  --c-border:        71 85 105;
+  --c-line:          255 255 255;
+
+  --c-accent:        125 180 255;
+  --c-accent-grad-end: 180 150 255;
+  --c-accent-soft:   30 41 59;
+
+  --c-flood:         255 90 90;
+  --c-permanent:     120 180 255;
+
+  --c-success:       34 197 94;
+  --c-warn:          251 191 36;
+  --c-danger:        248 113 113;
+
+  --shadow-glass:
+    0 12px 40px rgb(0 0 0 / 0.65),
+    0 3px 12px rgb(0 0 0 / 0.35),
+    inset 0 1px 0 rgb(255 255 255 / 0.08);
+}
+
+/* ---------------------------------------------------------------------------
+   BASE
+   --------------------------------------------------------------------------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: rgb(var(--c-canvas));
+  color: rgb(var(--c-ink));
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+* { box-sizing: border-box; }
+
+input, button, textarea, select {
+  font: inherit;
+  color: rgb(var(--c-ink));
+}
+
+/* ---------------------------------------------------------------------------
+   TEXT HIERARCHY (IMPORTANT)
+   --------------------------------------------------------------------------- */
+.text-primary   { color: rgb(var(--c-ink)); }
+.text-secondary { color: rgb(var(--c-text)); }
+.text-muted     { color: rgb(var(--c-muted)); }
+.text-subtle    { color: rgb(var(--c-subtle)); }
+
+/* ---------------------------------------------------------------------------
+   GLASS SYSTEM
+   --------------------------------------------------------------------------- */
+.glass {
+  background: rgb(var(--c-glass-bg) / var(--c-glass-bg-a));
+  backdrop-filter: blur(18px);
+  border: 1px solid rgb(var(--c-glass-border) / var(--c-glass-border-a));
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-strong {
+  background: rgb(var(--c-glass-bg) / 0.88);
+  backdrop-filter: blur(24px);
+}
+
+.glass-pill {
+  background: rgb(var(--c-glass-bg) / 0.8);
+  border-radius: 999px;
+}
+
+/* ---------------------------------------------------------------------------
+   INPUTS (FIXES YOUR MAIN ISSUE)
+   --------------------------------------------------------------------------- */
+input, textarea {
+  background: rgb(15 23 42 / 0.9);
+  border: 1px solid rgb(var(--c-border));
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: rgb(var(--c-ink));
+  transition: all 0.2s ease;
+}
+
+input::placeholder {
+  color: rgb(var(--c-subtle));
+}
+
+input:focus {
+  outline: none;
+  border-color: rgb(var(--c-accent));
+  box-shadow: 0 0 0 3px rgb(var(--c-accent) / 0.2);
+}
+
+/* ---------------------------------------------------------------------------
+   BUTTONS (CTA IMPROVEMENT)
+   --------------------------------------------------------------------------- */
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--c-accent)),
+    rgb(var(--c-accent-grad-end))
+  );
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 16px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgb(var(--c-accent) / 0.35);
+}
+
+/* ---------------------------------------------------------------------------
+   SCROLLBAR
+   --------------------------------------------------------------------------- */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgb(var(--c-line) / 0.2);
+  border-radius: 999px;
+}
+
+/* ---------------------------------------------------------------------------
+   MAPLIBRE (cleaner integration)
+   --------------------------------------------------------------------------- */
+.maplibregl-ctrl-attrib {
+  background: rgb(var(--c-glass-bg) / 0.8) !important;
+  color: rgb(var(--c-muted)) !important;
+  border-radius: 8px !important;
+}
+
+.maplibregl-ctrl-group {
+  background: rgb(var(--c-glass-bg) / 0.9) !important;
+  border: 1px solid rgb(var(--c-border)) !important;
+  border-radius: 12px !important;
+}
+
+/* ---------------------------------------------------------------------------
+   ANIMATIONS & EFFECTS
+   --------------------------------------------------------------------------- */
+.shimmer-bar {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--c-accent)) 0%,
+    rgb(var(--c-accent-grad-end)) 50%,
+    rgb(var(--c-accent)) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+  border-radius: 999px;
+}
