@@ -72,7 +72,7 @@ BTP-Final-Code/
 │   ├── 2-Training.ipynb
 │   └── 3-Visualization.ipynb
 │
-├── checkpoint-v3/             # 🧠 Holds the active trained model (gitignored)
+├── checkpoint-v3/             # 🧠 Holds the active trained model
 │   └── best_dice.pth          # Active model weight file (130 MB)
 │
 ├── samples/                   # 📁 Testing Samples (Shapefiles & Coordinates)
