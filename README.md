@@ -108,7 +108,19 @@ If you want to share your running application link with a friend or deploy the f
 2.  Go to your ngrok Dashboard and copy your **Authtoken**.
 3.  Add it to your `.env` file as shown below.
 
-### 3. Setting Up the `.env` File
+### 3. Create a virtual environment (Recommended)
+It's best practice to run Python apps in an isolated virtual environment so dependencies don't conflict with other projects.
+```bash
+# On macOS and Linux:
+python3 -m venv venv
+source venv/bin/activate
+
+# On Windows:
+python -m venv venv
+venv\Scripts\activate
+```
+
+### 4. Setting Up the `.env` File
 Create a file named `.env` in the **root** of the project (`BTP-Final-Code/.env`) and add the following lines, replacing the values with your own:
 
 ```env
