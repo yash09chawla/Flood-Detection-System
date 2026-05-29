@@ -45,7 +45,7 @@ Since high-resolution satellite imagery covering an entire province or region is
 The project has been cleaned and organized into a modular structure:
 
 ```
-BTP-Final-Code/
+Flood-Detection-System/
 ├── flood-detection-src/       # 🐍 Python: ML Model & Web API
 │   ├── api.py                 # FastAPI Web Server entrypoint
 │   ├── inference.py           # FloodPredictor class & PyTorch model loader
