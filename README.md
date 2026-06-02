@@ -156,8 +156,6 @@ chmod +x setup.sh
 # Run installation
 ./setup.sh
 ```
-> [!TIP]
-> **No C-Compilation Needed:** By replacing `fiona` with `pyogrio` in the backend dependencies, the setup script installs a pre-compiled geospatial wheel. You do **not** need to install complex local compilers or C-libraries (like GDAL) on your host operating system!
 
 ### Step 4: Run the application
 Run the unified launcher script. It will clean up ports, load your `.env` keys, activate your Python virtual environment, and launch **both** the Next.js frontend and FastAPI backend in parallel within a single console tab:
